@@ -8,7 +8,6 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/style.css">
-    
 
     <title>Liputan 69</title>
   </head>
@@ -22,30 +21,24 @@
         <li class="list-group-item active font-weight-bold" aria-current="true"> </li>
         <?php
         $conn=mysqli_connect("localhost","root","","blog_berita");
-        
-        if (!$conn) {
-            die ('Gagal terhubung MySQL: ' . mysqli_connect_error());   
-        }
         $sql = 'SELECT* FROM konten';
         $query = mysqli_query($conn, $sql);
-        if (!$query) {
-            die ('SQL Error: ' . mysqli_error($conn));
-        }
         $index=0;
-        echo '<table class="table table-borderless">
-        <thead>';
+        echo '
+            <table class="table table-borderless">
+            <thead>';
         while ($row = mysqli_fetch_array($query)){
             $index++;
             if($index == 4){
-                break;
+                break; //looping stop saat list berita sudah 4 baris
             }
             echo '
                 <tr class="list-group-item">
                 <td scope="col"><img src="'.$row['id_konten'].'.jpg" class="border-0"  style="width: 400px;"></td>
                 <td scope="col align-baseline">';
-                if($_GET['passWord'] == akuoke){
+                if($jumlahBaris > 0 ){
                     echo '
-                    <a href="konten.php?id='.$row['id_konten'].'&userName=khoirony&passWord=akuoke" method="GET"> <span class="h3">'.$row['judul_berita'].'</span></a><br/>';
+                    <a href="konten.php?id='.$row['id_konten'].'&userName='.$arrayHasil[userName].'&passWord='.$arrayHasil[passWord].'" method="GET"> <span class="h3">'.$row['judul_berita'].'</span></a><br/>';
                 }else{
                     echo '
                     <a href="konten.php?id='.$row['id_konten'].'" method="GET"> <span class="h3">'.$row['judul_berita'].'</span></a><br/>';
@@ -60,27 +53,19 @@
         ?>
     </ul>
     <table class="table table-borderless">
-    <tr>
-    <th scope="col">
+    <tr><th scope="col">
     <ul class="list-group" id="Sport">
         <li class="list-group-item active font-weight-bold" aria-current="true">Sport</li>
         <?php
         $conn=mysqli_connect("localhost","root","","blog_berita");
-        
-        if (!$conn) {
-            die ('Gagal terhubung MySQL: ' . mysqli_connect_error());   
-        }
         $sql = 'SELECT* FROM konten WHERE id_kategori=2002';
         $query = mysqli_query($conn, $sql);
-        if (!$query) {
-            die ('SQL Error: ' . mysqli_error($conn));
-        }
         while ($row = mysqli_fetch_array($query)){
             echo '
             <li class="list-group-item">';
-                if($_GET['passWord'] == akuoke){
+                if($jumlahBaris > 0){
                     echo '
-                    <a href="konten.php?id='.$row['id_konten'].'&userName=khoirony&passWord=akuoke" method="GET">'.$row['judul_berita'].'</a><br/>';
+                    <a href="konten.php?id='.$row['id_konten'].'&userName='.$arrayHasil[userName].'&passWord='.$arrayHasil[passWord].'" method="GET">'.$row['judul_berita'].'</a><br/>';
                 }else{
                     echo '
                     <a href="konten.php?id='.$row['id_konten'].'" method="GET">'.$row['judul_berita'].'</a><br/>';
@@ -95,21 +80,14 @@
         <li class="list-group-item active font-weight-bold" aria-current="true">Health</li>
         <?php
         $conn=mysqli_connect("localhost","root","","blog_berita");
-        
-        if (!$conn) {
-            die ('Gagal terhubung MySQL: ' . mysqli_connect_error());   
-        }
         $sql = 'SELECT* FROM konten WHERE id_kategori=2003';
         $query = mysqli_query($conn, $sql);
-        if (!$query) {
-            die ('SQL Error: ' . mysqli_error($conn));
-        }
         while ($row = mysqli_fetch_array($query)){
             echo '
             <li class="list-group-item">';
-                if($_GET['passWord'] == akuoke){
+                if($jumlahBaris > 0 ){
                     echo '
-                    <a href="konten.php?id='.$row['id_konten'].'&userName=khoirony&passWord=akuoke" method="GET">'.$row['judul_berita'].'</a><br/>';
+                    <a href="konten.php?id='.$row['id_konten'].'&userName='.$arrayHasil[userName].'&passWord='.$arrayHasil[passWord].'" method="GET">'.$row['judul_berita'].'</a><br/>';
                 }else{
                     echo '
                     <a href="konten.php?id='.$row['id_konten'].'" method="GET">'.$row['judul_berita'].'</a><br/>';
@@ -124,21 +102,14 @@
         <li class="list-group-item active font-weight-bold" aria-current="true">Tech</li>
         <?php
         $conn=mysqli_connect("localhost","root","","blog_berita");
-        
-        if (!$conn) {
-            die ('Gagal terhubung MySQL: ' . mysqli_connect_error());   
-        }
         $sql = 'SELECT* FROM konten WHERE id_kategori=2004';
         $query = mysqli_query($conn, $sql);
-        if (!$query) {
-            die ('SQL Error: ' . mysqli_error($conn));
-        }
         while ($row = mysqli_fetch_array($query)){
             echo '
             <li class="list-group-item">';
-                if($_GET['passWord'] == akuoke){
+                if($jumlahBaris > 0 ){
                     echo '
-                    <a href="konten.php?id='.$row['id_konten'].'&userName=khoirony&passWord=akuoke" method="GET">'.$row['judul_berita'].'</a><br/>';
+                    <a href="konten.php?id='.$row['id_konten'].'&userName='.$arrayHasil[userName].'&passWord='.$arrayHasil[passWord].'" method="GET">'.$row['judul_berita'].'</a><br/>';
                 }else{
                     echo '
                     <a href="konten.php?id='.$row['id_konten'].'" method="GET">'.$row['judul_berita'].'</a><br/>';
@@ -153,21 +124,14 @@
         <li class="list-group-item active font-weight-bold" aria-current="true" id="Politics">Politics</li>
         <?php
         $conn=mysqli_connect("localhost","root","","blog_berita");
-        
-        if (!$conn) {
-            die ('Gagal terhubung MySQL: ' . mysqli_connect_error());   
-        }
         $sql = 'SELECT* FROM konten WHERE id_kategori=2001';
         $query = mysqli_query($conn, $sql);
-        if (!$query) {
-            die ('SQL Error: ' . mysqli_error($conn));
-        }
         while ($row = mysqli_fetch_array($query)){
             echo '
             <li class="list-group-item">';
-                if($_GET['passWord'] == akuoke){
+                if($jumlahBaris > 0 ){
                     echo '
-                    <a href="konten.php?id='.$row['id_konten'].'&userName=khoirony&passWord=akuoke" method="GET">'.$row['judul_berita'].'</a><br/>';
+                    <a href="konten.php?id='.$row['id_konten'].'&userName='.$arrayHasil[userName].'&passWord='.$arrayHasil[passWord].'" method="GET">'.$row['judul_berita'].'</a><br/>';
                 }else{
                     echo '
                     <a href="konten.php?id='.$row['id_konten'].'" method="GET">'.$row['judul_berita'].'</a><br/>';
@@ -183,25 +147,18 @@
     <ul class="list-group">
         <?php
         $conn=mysqli_connect("localhost","root","","blog_berita");
-        
-        if (!$conn) {
-            die ('Gagal terhubung MySQL: ' . mysqli_connect_error());   
-        }
         $sql = 'SELECT* FROM konten';
         $query = mysqli_query($conn, $sql);
-        if (!$query) {
-            die ('SQL Error: ' . mysqli_error($conn));
-        }
-        $index=0;
-        echo '<table class="table table-borderless">
-        <thead>';
-        echo '<li class="list-group-item" style="width: 300px;">Rekomendasi</li>';
+        echo '
+            <table class="table table-borderless">
+            <thead>
+            <li class="list-group-item" style="width: 300px;">Rekomendasi</li>';
         while ($row = mysqli_fetch_array($query)){
             echo '
                 <li class="list-group-item" style="width: 300px;">';
-                if($_GET['passWord'] == akuoke){
+                if($jumlahBaris > 0 ){
                     echo '
-                    <a href="konten.php?id='.$row['id_konten'].'&userName=khoirony&passWord=akuoke" method="GET">'.$row['judul_berita'].'</a>';
+                    <a href="konten.php?id='.$row['id_konten'].'&userName='.$arrayHasil[userName].'&passWord='.$arrayHasil[passWord].'" method="GET">'.$row['judul_berita'].'</a>';
                 }else{
                     echo '
                     <a href="konten.php?id='.$row['id_konten'].'" method="GET"> '.$row['judul_berita'].'</a>';
@@ -213,24 +170,12 @@
         </table>';
         ?>
     </ul>
-    </th>
-    </tr>
+    </th></tr>
     </table>
-
     </div>
     </div>
 
-
-    <footer>
-    <div class="container text-center">
-      <div class="row">
-        <div class="col-sm-12 mt-3">
-          <p> &copy; Copy Right 2021 PT. Liputan69 Cyber Media (Brengkok Gramedia Digital Group). All rights reserved.</p>
-        </div>
-      </div>
-    </div>
-    </footer>
-    <!-- Optional JavaScript; choose one of the two! -->
+    <?php include('footer.php'); ?>
 
     <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
