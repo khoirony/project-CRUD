@@ -21,7 +21,7 @@
         <li class="list-group-item active font-weight-bold" aria-current="true"> </li>
         <?php
         $conn=mysqli_connect("localhost","root","","blog_berita");
-        $sql = 'SELECT* FROM konten';
+        $sql = 'SELECT* FROM konten order by id_konten DESC';
         $query = mysqli_query($conn, $sql);
         $index=0;
         echo '
@@ -34,7 +34,7 @@
             }
             echo '
                 <tr class="list-group-item">
-                <td scope="col"><img src="'.$row['id_konten'].'.jpg" class="border-0"  style="width: 400px;"></td>
+                <td scope="col"><img src="./images/'.$row['gambar'].' " class="border-0"  style="width: 400px;"></td>
                 <td scope="col align-baseline">';
                 if($jumlahBaris > 0 ){
                     echo '

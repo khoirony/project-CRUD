@@ -28,7 +28,7 @@
       <?php
         $idk=$_GET['id'];
         $conn=mysqli_connect("localhost","root","","blog_berita");
-        $sql= "SELECT kn.id_konten,id_kategori,nama_kategori,judul_berita,isi_berita,waktu_penulisan FROM konten kn JOIN kategori ki USING(id_kategori) WHERE id_konten=$idk";
+        $sql= "SELECT kn.id_konten,gambar,id_kategori,nama_kategori,judul_berita,isi_berita,waktu_penulisan FROM konten kn JOIN kategori ki USING(id_kategori) WHERE id_konten=$idk";
         $query = mysqli_query($conn,$sql);
         $row = mysqli_fetch_array($query);
         echo '
@@ -45,7 +45,7 @@
           <p class="ml-5 text-muted"> <span class="ml-2 font-weight-light">Ditulis pada '.$row['waktu_penulisan'].'</span></p>
           <br/>
           ​<picture class="ml-5">
-          <img src="'.$row['id_konten'].'.jpg" class"img-fluid ml-3"  style="width: 90%;">
+          <img src="./images/'.$row['gambar'].'" style ="width: 90%">
           ​</picture>
           <br/><br/>
           <p class="ml-5 mr-5 md-5 text-justify font-weight-normal">'.$row['isi_berita'].'</p>

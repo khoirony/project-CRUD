@@ -16,28 +16,11 @@
 	<?php include('header.php');?>
 	<div class="jumbotron jumbotron-fluid">
     <div class="container">
-	<?php 
-		if(isset($_POST['update'])){
-			$id = $_GET['id'];
-	    	$judul_berita = $_POST['judul_berita'];
-		    $waktu_penulisan = $_POST['waktu_penulisan'];
-	        $isi_berita = $_POST['isi_berita'];
-	        $id_kategori = $_POST['kategori'];
-		
-		    // update user data
-		    $result = mysqli_query($conn, "UPDATE konten SET judul_berita='$judul_berita',waktu_penulisan='$waktu_penulisan',isi_berita='$isi_berita',id_kategori='$id_kategori' WHERE id_konten=$id");
-			
-		    // Redirect to homepage to display updated user in list
-		    header('Location:admin.php?userName='.$arrayHasil[userName].'&passWord='.$arrayHasil[passWord].'');
-		}
-	?>
+	
 	<?php
 	$id = $_GET['id'];
 	$conn=mysqli_connect("localhost","root","","blog_berita");
 
-	// Display selected user data based on id
-	// Getting id from url
-	// Fetch user data based on id
 	$sql = "SELECT * FROM konten WHERE id_konten=$id";
 	$result = mysqli_query($conn,$sql);
 	$row = mysqli_fetch_array($result);
@@ -59,19 +42,41 @@
 		<div class="form-group">
     	<label>Isi Berita</label>
 		<textarea type="text" class="form-control" name="isi_berita" rows="10">'.$row['isi_berita'].'</textarea>
-		</div>
+		</div>';
+	?>
         <div class="form-group">
     		<label>Kategori Berita</label><br/>
     		<input type="radio" name="kategori" value="2001" class="ml-1"> Politics </input>
            	<input type="radio" name="kategori" value="2002" class="ml-3"> Sport </input>
            	<input type="radio" name="kategori" value="2003" class="ml-3"> Health </input>
            	<input type="radio" name="kategori" value="2004" class="ml-3"> Tech </input>
+		</div>
+		<div class="form-group">
+    		<label>Upload Gambar </label><br/>
+    		<input type="file" name="gambar">
   		</div>
         <input class="btn btn-primary" type="submit" name="update" value="update">
-			
-		</form>';
-	?>
+		</form>
 	</div></div>
+
+	<?php 
+		if(isset($_POST['update'])){
+	    	$judul_berita = $_POST['judul_berita'];
+		    $waktu_penulisan = $_POST['waktu_penulisan'];
+	        $isi_berita = $_POST['isi_berita'];
+			$id_kategori = $_POST['kategori'];
+			$gambar = $_FILES['gambar']['name'];
+
+			move_uploaded_file($_FILES['gambar']['tmp_name'],"./images/".$gambar);
+		
+			// update user data
+		    $result = mysqli_query($conn,"UPDATE konten SET judul_berita='$judul_berita',waktu_penulisan='$waktu_penulisan',isi_berita='$isi_berita',gambar='$gambar',id_kategori='$id_kategori' WHERE id_konten=$id");
+			
+		    // Redirect to homepage to display updated user in list
+			//header('Location:admin.php?userName='.$arrayHasil[userName].'&passWord='.$arrayHasil[passWord].'');
+			echo'.$gambar.';
+		}
+	?>
 	</div>
 	</div>
 

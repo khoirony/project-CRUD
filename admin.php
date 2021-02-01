@@ -41,7 +41,7 @@
     	    while ($row = mysqli_fetch_array($query)){
     	        echo '
     	            <li class="list-group-item"><a href="konten.php?id='.$row['id_konten'].'&userName='.$arrayHasil[userName].'&passWord='.$arrayHasil[passWord].'" method="GET"> '.$row['judul_berita'].'</a><br/>
-    	            <a href="edit_berita.php?id='.$row['id_konten'].'&userName='.$arrayHasil[userName].'&passWord='.$arrayHasil[passWord].'" method="GET">Edit</a> | <a href="hapus_berita.php?id='.$row['id_konten'].'&userName='.$arrayHasil[userName].'&passWord='.$arrayHasil[passWord].'" method="GET">Delete</a> </li>
+    	            <a href="edit_berita.php?id='.$row['id_konten'].'&userName='.$arrayHasil[userName].'&passWord='.$arrayHasil[passWord].'" class="btn btn-primary" method="GET">Edit</a> | <a href="hapus_berita.php?id='.$row['id_konten'].'&userName='.$arrayHasil[userName].'&passWord='.$arrayHasil[passWord].'" class="btn btn-primary" method="GET">Delete</a> </li>
     	            ';
     	    }
 			echo '
